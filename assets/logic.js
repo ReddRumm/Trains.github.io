@@ -5,5 +5,5 @@ var config = {
     projectId: "trains-26e34",
     storageBucket: "trains-26e34.appspot.com",
     messagingSenderId: "514624912530"
-  };
-  firebase.initializeApp(config);
+};
+firebase.initializeApp(config);
