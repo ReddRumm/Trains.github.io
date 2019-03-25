@@ -26,7 +26,7 @@ function trainSchedule(trainId, destination, frequency, firstTrTime) {
 }
 
 // Saves message on form submit.
-$('.sBtn').onsubmit = function (e) {
+$('.btn').on('click', function(e) {
     e.preventDefault();
     var trainName = $('trainName').val().trim();
     var destination = $('destination').val().trim();
@@ -38,9 +38,10 @@ $('.sBtn').onsubmit = function (e) {
     var tableDataFrequency = $('<td id="frequ">');
     var tableDatafirstTrainTime = $('<td id="firstTrainTime">');
 
-
     tableDataTrainID.append(trainName);
     tableDataDestination.append(destination);
     tableDataFrequency.append(frequency);
     tableDatafirstTrainTime.append(firstTrainTime);
-};
+
+    console.log('clicked');
+});
