@@ -7,7 +7,7 @@ var config = {
     messagingSenderId: "514624912530"
 };
 firebase.initializeApp(config);
-
+var database = firebase.database();
 
 
 /**
@@ -24,6 +24,7 @@ function trainSchedule(trainId, destination, frequency, firstTrTime) {
     };
     console.log(postData);
 }
+trainSchedule();
 
 // Saves message on form submit.
 $('.btn').on('click', function(e) {
