@@ -51,7 +51,10 @@ $('.btn').on('click', function(e) {
     frequency = $('#frequency').val('');
 });
 
-$('.btn').on('click', function(e) {
-    e.preventDefault();
-    
-});
+// $('.btn').on('click', function(e) {
+//     e.preventDefault();
+
+// });
+
+// let now=moment();
+// console.log(now);
