@@ -17,14 +17,6 @@
         <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js'
             integrity='sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k' crossorigin='anonymous'>
         </script>
-        <!-- Firebase cloudflare -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
-        <!-- MomentJS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/af.js"></script> 
-        <!-- FireBase -->
-        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script>
-
         <!-- local css -->
         <link rel="stylesheet" href="assets/style.css">
     </head>
@@ -49,9 +41,9 @@
                                 <tr>
                                     <th scope="col">Train ID</th>
                                     <th scope="col">Destination</th>
+                                    <th scope="col">First Train Time</th>
                                     <th scope="col">Frequency</th>
-                                    <th scope="col">Next Arrival</th>
-                                    <th scope="col">Minutes Away</th>
+                                    <th scope="col">Next Train</th>
                                 </tr>
                             </thead>
                             <tbody class='tableBody'>
@@ -70,7 +62,7 @@
                                 <input type="text" class="form-control" id="trainName" placeholder="Thomas">
                             </div>
                             <div class="form-group">
-                                <label for="destination">Destination</label>
+                                <label  for="destination">Destination</label>
                                 <input type="text" class="form-control" id="destination" placeholder="New York Central">
                             </div>
                             <div class="form-group">
@@ -94,8 +86,22 @@
     </body>
     <footer>
     </footer>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
 
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCeuHNkIttZaGFaPhRiA6aNqeeZaIwyrfk",
+            authDomain: "trains-26e34.firebaseapp.com",
+            databaseURL: "https://trains-26e34.firebaseio.com",
+            projectId: "trains-26e34",
+            storageBucket: "trains-26e34.appspot.com",
+            messagingSenderId: "514624912530"
+        };
+        firebase.initializeApp(config);
+        moment().format();
+    </script>
+    <!-- MomentJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/af.js"></script>
+    <script src="assets/logic.js"></script>
 </html>
