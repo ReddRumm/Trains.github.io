@@ -1,5 +1,4 @@
 var database = firebase.database();
-
 function trainSchedule(trainId, destination, firstTrTime, frequency) {
     // A post entry.
     var postData = {
@@ -10,18 +9,18 @@ function trainSchedule(trainId, destination, firstTrTime, frequency) {
     };
     console.log(postData);
 }
-trainSchedule();
+console.log(database);
 
 // Saves message on form submit.
-$('.btn').on('click', function(e) {
+$('.btn').on('click', function (e) {
     e.preventDefault();
-    var trainName = $('#trainName').val().trim();
-    var destination = $('#destination').val().trim();
-    var firstTrainTime = $('#firstTrTime').val().trim();
-    var frequency = $('#frequency').val().trim();
 
+    trainName = $('#trainName').val().trim();
+    destination = $('#destination').val().trim();
+    firstTrainTime = $('#firstTrTime').val().trim();
+    frequency = $('#frequency').val().trim();
 
-    var allTableData=$('<tr id="tableRow">');
+    var allTableData = $('<tr id="tableRow">');
     var tableDataTrainID = $('<td id="trainID">');
     var tableDataDestination = $('<td id="dest">');
     var tableDatafirstTrainTime = $('<td id="firstTrainTime">');
