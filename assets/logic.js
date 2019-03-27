@@ -25,6 +25,9 @@ $('.btn').on('click', function (e) {
     var tableDataDestination = $('<td id="dest">');
     var tableDatafirstTrainTime = $('<td id="firstTrainTime">');
     var tableDataFrequency = $('<td id="frequ">');
+    var nestedData=$('<tr id="nxtTrain">');
+    var nestedDataMin=$('<td id="min">');
+    var nestedDatatime=$('<td id="time">');
 
     tableDataTrainID.append(trainName);
     tableDataDestination.append(destination);
@@ -35,19 +38,23 @@ $('.btn').on('click', function (e) {
     allTableData.append(tableDataDestination);
     allTableData.append(tableDatafirstTrainTime);
     allTableData.append(tableDataFrequency);
+    nestedData.append(nestedDataMin);
+    nestedData.append(nestedDatatime);
+    allTableData.append(nestedData);
 
     $('.tableBody').append(allTableData);
+
+    trainName = $('#trainName').val('');
+    destination = $('#destination').val('');
+    firstTrainTime = $('#firstTrTime').val('');
+    frequency = $('#frequency').val('');
+
 
     console.log('clicked');
     console.log(trainName);
     console.log(destination);
     console.log(firstTrainTime);
     console.log(frequency);
-
-    trainName = $('#trainName').val('');
-    destination = $('#destination').val('');
-    firstTrainTime = $('#firstTrTime').val('');
-    frequency = $('#frequency').val('');
 });
 
 // $('.btn').on('click', function(e) {
