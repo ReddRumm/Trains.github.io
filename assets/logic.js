@@ -1,4 +1,5 @@
 var database = firebase.database();
+
 function trainSchedule(trainId, destination, firstTrTime, frequency) {
     // A post entry.
     var postData = {
@@ -6,15 +7,26 @@ function trainSchedule(trainId, destination, firstTrTime, frequency) {
         destination: destination,
         firstTrTime: firstTrTime,
         frequency: frequency,
+        // nextTrain: nxtTrain,
     };
+
+    // Get a key for a new Post.
+    var newPostKey = firebase.database().ref().child('posts').push().key;
+
+    // Write the new post's data simultaneously in the posts list and the user's post list.
+    var updates = {};
+    updates['/posts/' + newPostKey] = postData;
+    updates['/user-posts/' + trainId + '/' + newPostKey] = postData;
+
     console.log(postData);
+    return firebase.database().ref().update(updates);
 }
 
 // I can not get this is produce the currect time.
 // I will come back to this. 
-function addMinutes(date, minutes) {
-    return new Date(date.getTime() + minutes*60000);
-}
+// function addMinutes(date, minutes) {
+//     return new Date(date.getTime() + minutes * 60000);
+// }
 
 // Saves message on form submit.
 $('.btn').on('click', function (e) {
@@ -25,26 +37,28 @@ $('.btn').on('click', function (e) {
     var firstTrainTime = $('#firstTrTime').val().trim();
     var frequency = $('#frequency').val().trim();
 
-    var nxtTrain=addMinutes(firstTrainTime, frequency);
+    trainSchedule(trainName, destination, firstTrainTime, frequency);
+
+    // var nxtTrain = addMinutes(firstTrainTime, frequency);
 
     var allTableData = $('<tr id="tableRow">');
     var tableDataTrainID = $('<td id="trainID">');
     var tableDataDestination = $('<td id="dest">');
     var tableDatafirstTrainTime = $('<td id="firstTrainTime">');
     var tableDataFrequency = $('<td id="frequ">');
-    var tableDataNxtTrain=$('<td id="nxtTrain">');
+    var tableDataNxtTrain = $('<td id="nxtTrain">');
 
     tableDataTrainID.append(trainName);
     tableDataDestination.append(destination);
     tableDatafirstTrainTime.append(firstTrainTime);
     tableDataFrequency.append(frequency);
-    tableDataNxtTrain.append(nxtTrain);
+    // tableDataNxtTrain.append(nxtTrain);
 
     allTableData.append(tableDataTrainID);
     allTableData.append(tableDataDestination);
     allTableData.append(tableDatafirstTrainTime);
     allTableData.append(tableDataFrequency);
-    allTableData.append(tableDataNxtTrain);
+    // allTableData.append(tableDataNxtTrain);
 
     $('.tableBody').append(allTableData);
 
@@ -59,6 +73,5 @@ $('.btn').on('click', function (e) {
     console.log(destination);
     console.log(firstTrainTime);
     console.log(frequency);
-    console.log(nxtTrain);
+    // console.log(nxtTrain);
 });
-

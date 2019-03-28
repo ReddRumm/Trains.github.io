@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "trains-26e34"
+    "default": "trains-26e34",
+    "trains": "trains-26e34"
   }
 }
