@@ -46,7 +46,7 @@ $('.btn').on('click', function (e) {
     var tableDataDestination = $('<td id="dest">');
     var tableDatafirstTrainTime = $('<td id="firstTrainTime">');
     var tableDataFrequency = $('<td id="frequ">');
-    var tableDataNxtTrain = $('<td id="nxtTrain">');
+    // var tableDataNxtTrain = $('<td id="nxtTrain">');
 
     tableDataTrainID.append(trainName);
     tableDataDestination.append(destination);
