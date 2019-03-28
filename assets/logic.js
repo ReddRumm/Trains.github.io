@@ -10,6 +10,8 @@ function trainSchedule(trainId, destination, firstTrTime, frequency) {
     console.log(postData);
 }
 
+// I can not get this is produce the currect time.
+// I will come back to this. 
 function addMinutes(date, minutes) {
     return new Date(date.getTime() + minutes*60000);
 }
