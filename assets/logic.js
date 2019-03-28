@@ -9,49 +9,40 @@ function trainSchedule(trainId, destination, firstTrTime, frequency) {
     };
     console.log(postData);
 }
-console.log(database);
-moment().format();
+
+function addMinutes(date, minutes) {
+    return new Date(date.getTime() + minutes*60000);
+}
 
 // Saves message on form submit.
 $('.btn').on('click', function (e) {
     e.preventDefault();
 
-    trainName = $('#trainName').val().trim();
-    destination = $('#destination').val().trim();
-    firstTrainTime = $('#firstTrTime').val().trim();
-    frequency = $('#frequency').val().trim();
+    var trainName = $('#trainName').val().trim();
+    var destination = $('#destination').val().trim();
+    var firstTrainTime = $('#firstTrTime').val().trim();
+    var frequency = $('#frequency').val().trim();
+
+    var nxtTrain=addMinutes(firstTrainTime, frequency);
 
     var allTableData = $('<tr id="tableRow">');
     var tableDataTrainID = $('<td id="trainID">');
     var tableDataDestination = $('<td id="dest">');
     var tableDatafirstTrainTime = $('<td id="firstTrainTime">');
     var tableDataFrequency = $('<td id="frequ">');
-    var nestedData=$('<tr id="nxtTrain">');
-    var nestedDataMin=$('<td id="min">');
-    var nestedDatatime=$('<td id="time">');
+    var tableDataNxtTrain=$('<td id="nxtTrain">');
 
     tableDataTrainID.append(trainName);
     tableDataDestination.append(destination);
-    tableDataFrequency.append(frequency);
     tableDatafirstTrainTime.append(firstTrainTime);
+    tableDataFrequency.append(frequency);
+    tableDataNxtTrain.append(nxtTrain);
 
     allTableData.append(tableDataTrainID);
     allTableData.append(tableDataDestination);
     allTableData.append(tableDatafirstTrainTime);
     allTableData.append(tableDataFrequency);
-
-    nextTrain=()=>{
-        min=frequency.getMinutes();
-        total=min+firstTrTime;
-        console.log();
-        return total;
-    };
-    nextTrain();
-
-
-    nestedData.append(nestedDataMin);
-    nestedData.append(nestedDatatime);
-    allTableData.append(nestedData);
+    allTableData.append(tableDataNxtTrain);
 
     $('.tableBody').append(allTableData);
 
@@ -66,5 +57,6 @@ $('.btn').on('click', function (e) {
     console.log(destination);
     console.log(firstTrainTime);
     console.log(frequency);
+    console.log(nxtTrain);
 });
 
