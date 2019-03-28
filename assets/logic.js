@@ -10,6 +10,7 @@ function trainSchedule(trainId, destination, firstTrTime, frequency) {
     console.log(postData);
 }
 console.log(database);
+moment().format();
 
 // Saves message on form submit.
 $('.btn').on('click', function (e) {
@@ -38,6 +39,16 @@ $('.btn').on('click', function (e) {
     allTableData.append(tableDataDestination);
     allTableData.append(tableDatafirstTrainTime);
     allTableData.append(tableDataFrequency);
+
+    nextTrain=()=>{
+        min=frequency.getMinutes();
+        total=min+firstTrTime;
+        console.log();
+        return total;
+    };
+    nextTrain();
+
+
     nestedData.append(nestedDataMin);
     nestedData.append(nestedDatatime);
     allTableData.append(nestedData);
@@ -57,10 +68,3 @@ $('.btn').on('click', function (e) {
     console.log(frequency);
 });
 
-// $('.btn').on('click', function(e) {
-//     e.preventDefault();
-
-// });
-
-// let now=moment();
-// console.log(now);
