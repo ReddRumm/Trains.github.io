@@ -87,7 +87,7 @@ $('.btn').on('click', function (e) {
     tableDataTrainID.append(trainName);
     tableDataDestination.append(destination);
     tableDatafirstTrainTime.append(firstTrainTime);
-    tableDataFrequency.append(frequency);
+    tableDataFrequency.append(frequency+' :m');
     tableDataNextTrain.append(nxtTrain);
 
     allTableData.append(tableDataTrainID);
