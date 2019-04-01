@@ -13,14 +13,14 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-function trainSchedule(trainId, destination, firstTrTime, frequency) {
+function trainSchedule(trainId, dest, firstTrTime, freq, comingTrain) {
     // *A post entry.
     var postData = {
         trainId: trainId,
-        destination: destination,
+        destination: dest,
         firstTrTime: firstTrTime,
-        frequency: frequency,
-        // *nextTrain: nxtTrain,
+        frequency: freq,
+        nextTrain: comingTrain
     };
 
     // *Get a key for a new Post.
@@ -35,11 +35,6 @@ function trainSchedule(trainId, destination, firstTrTime, frequency) {
     return firebase.database().ref().update(updates);
 }
 
-// !I can not get this is produce the currect time.
-// !I will come back to this. 
-// !function addMinutes(date, minutes) {
-//     !return new Date(date.getTime() + minutes * 60000);
-// !};
 
 // *Saves infomation on form submit.
 $('.btn').on('click', function (e) {
@@ -49,31 +44,57 @@ $('.btn').on('click', function (e) {
     var destination = $('#destination').val().trim();
     var firstTrainTime = $('#firstTrTime').val().trim();
     var frequency = $('#frequency').val().trim();
+    var f = moment({
+        minute: parseInt($('#frequency').val().trim())
+    });
+    var nxtTrain = f._i.minute;
 
-    trainSchedule(trainName, destination, firstTrainTime, frequency);
+    function startTimer(duration, display) {
+        var timer = duration,
+            minutes, seconds;
+        setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
 
-    nxtTrain=()={
-        firstTrainTime
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.text(minutes + ":" + seconds);
+
+            if (--timer < 0) {
+                timer = duration;
+            }
+        }, 1000);
     }
+
+    jQuery(function ($) {
+        frequency = 60 * nxtTrain,
+            display = $('#nextTrain');
+        startTimer(frequency, display);
+    });
+
+    startTimer(frequency, nxtTrain);
+
+    trainSchedule(trainName, destination, firstTrainTime, frequency, nxtTrain);
 
     var allTableData = $('<tr id="tableRow">');
     var tableDataTrainID = $('<td id="trainID">');
     var tableDataDestination = $('<td id="dest">');
     var tableDatafirstTrainTime = $('<td id="firstTrainTime">');
     var tableDataFrequency = $('<td id="frequ">');
-    // ?var tableDataNxtTrain = $('<td id="nxtTrain">');
+    var tableDataNextTrain = $('<td id="nextTrain">');
 
     tableDataTrainID.append(trainName);
     tableDataDestination.append(destination);
     tableDatafirstTrainTime.append(firstTrainTime);
     tableDataFrequency.append(frequency);
-    // ?tableDataNxtTrain.append(nxtTrain);
+    tableDataNextTrain.append(nxtTrain);
 
     allTableData.append(tableDataTrainID);
     allTableData.append(tableDataDestination);
     allTableData.append(tableDatafirstTrainTime);
     allTableData.append(tableDataFrequency);
-    // ?allTableData.append(tableDataNxtTrain);
+    allTableData.append(tableDataNextTrain);
 
     $('.tableBody').append(allTableData);
 
@@ -88,5 +109,5 @@ $('.btn').on('click', function (e) {
     console.log(destination);
     console.log(firstTrainTime);
     console.log(frequency);
-    // ?console.log(nxtTrain);
+    console.log(nxtTrain);
 });
