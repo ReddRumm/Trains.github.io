@@ -52,7 +52,9 @@ $('.btn').on('click', function (e) {
 
     trainSchedule(trainName, destination, firstTrainTime, frequency);
 
-    // ?var nxtTrain = addMinutes(firstTrainTime, frequency);
+    nxtTrain=()={
+        firstTrainTime
+    }
 
     var allTableData = $('<tr id="tableRow">');
     var tableDataTrainID = $('<td id="trainID">');
