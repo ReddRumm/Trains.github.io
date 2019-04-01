@@ -1,4 +1,5 @@
 // *Initialize Firebase
+// *Make sure that you also have purmissions set to 'true' in firebase
 var config = {
     apiKey: "AIzaSyCeuHNkIttZaGFaPhRiA6aNqeeZaIwyrfk",
     authDomain: "trains-26e34.firebaseapp.com",
